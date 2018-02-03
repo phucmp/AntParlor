@@ -9,3 +9,31 @@
     border:0;
     letter-spacing: 0.1em;
 }
+
+.searchbarsection {
+  display: inline-block;
+  width: 100%;
+  border-radius: 3px;
+  padding: 4px 55px 4px 15px;
+  position: relative;
+  background: #fff;
+  /*border: 1px solid #ddd;*/
+
+
+}
+
+.searchbutton {
+    /*position: absolute;*/
+    right: 2px;
+    top: 2px;
+    color: #aaa;
+    border-radius: 3px;
+    font-size: 21px;
+    padding: 5px 10px 1px;
+    @include transition(all 200ms ease-in-out);
+
+    /*&:hover {
+      color: #fff
+      background-color: #8FBE00
+    }*/
+}
