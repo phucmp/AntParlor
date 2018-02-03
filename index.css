@@ -1,0 +1,11 @@
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 1% 0;
+    border:0;
+    letter-spacing: 0.1em;
+}
