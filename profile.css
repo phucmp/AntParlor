@@ -1,0 +1,123 @@
+/* Profile CSS File */
+
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 1% 0;
+    border:0;
+    letter-spacing: 0.1em;
+}
+
+
+.portfolioPics {
+	margin-top: 8.5%;
+}
+
+.outerContainer {
+	width:100%;
+	height: 300px;
+	margin-bottom: 6.5%;
+}
+
+.samplePics {
+	height: 100%;
+	width: 33%;  
+    display: inline-block; 
+}
+
+.samplePics > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.samplePics > img:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.providerPic {
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-left: 20%;
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.providerPic > img {
+	width: 100%;
+	height: 100%;
+}
+
+.info {
+	width: 40%;
+	height: 100px;
+	float: left;
+	margin-left: 6.5%;
+	display: inline-block;
+}
+
+.Name {
+	font-family: benton;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 4px;
+}
+
+.Address {
+	font-family: benton;
+	font-size: 15px;
+}
+
+.Number {
+	font-family: benton;
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+
+.Service {
+	font-family: benton;
+	font-size: 15px;
+	font-style: italic;
+	letter-spacing: 1px;
+	margin-top: 10px;
+}
+
+.Summary {
+	font-family: benton;
+	font-size: 12px;
+	margin-top: 1%;
+}
+
+.socialContainer {
+	margin-top: -14.5%;
+}
+
+.socialLink {
+	width: 30px;
+	height: 30px;
+	float: center;
+	margin-top: 3%;
+	margin-left: 1%;
+	display: inline-block;
+}
+
+.socialLink > a,img {
+	width: 100%;
+	height: 100%;
+}
+
+.socialLink > a:hover {
+	opacity: 0.5;
+}
+
+#map {
+  height: 400px;
+  width: 50%;
+  margin: 0 auto;
+}
