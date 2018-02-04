@@ -11,30 +11,65 @@
     position: relative;
 }
 
+/*AntParlor Logo*/
+.navbar .navbarcontainer .navbar-header .navbar-brand {
+    /*position: absolute;*/
+    font-family: "Vidaloka";
+    /*top: 22px;*/
+    /*left: 37px;*/
+    /*margin: -0;*/
+    width: 126px;
+    height: 33px;
+    font-size: 30px;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+}
+
 
 /*SEARCH AREA*/
 .searchbar-section {
     color: #fff;
     display: inline-block;
-    width: 100%;
+    width: 95%;
     border-radius: 3px;
     padding: 4px 55px 4px 15px;
     position: relative;
     background: #353737;
     height: 250px;
-    /*max-width: 1200px;*/
     margin: auto;
+    display: block;
+    background-repeat: no-repeat;
+    /*background-position: right 5% top -44px;*/
+    background-image: url(img/main1.jpg);
+    /*box-sizing: content-box;*/
+    /*background-size: 765px;*/
+    background-size: 1300px;
+    height: 300px;
 }
 
 #caption {
     padding: 20px;
+    text-shadow: 3px 3px 14px #424949;
 }
 
-/*#main1 {
-    height: 250px;
-    max-width: 1200px;
-    margin: auto;
-}*/
+#search-bar-pic {
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position: right 7% top -44px;
+    background-image: url(img/main1.jpg);
+    margin: 0 0 1px;
+    box-sizing: content-box;
+    background-size: 765px;
+    width: 100%;
+    height: 297px;
+}
 
 .search-form-and-button {
     position: relative;
@@ -67,7 +102,6 @@ input::placeholder {
     text-align: start;
     margin: 0em;
     font: 400 11px system-ui;
-
 }
 
 .search-form-and-button .fa-search { 
@@ -76,6 +110,7 @@ input::placeholder {
 }
 
 .search-form {
+    color: black;
     border-radius: 0;
     height: 48px;
     line-height: 48px;
@@ -83,7 +118,7 @@ input::placeholder {
     font-size: 14px;
     font-weight: 600;
     text-align: left;
-    width: 288px;
+    width: 400px;
 }
 
 .search-button {
@@ -115,33 +150,42 @@ input::placeholder {
 
 }
 
-/*.home-discovery-tiles .home-tile {
-    overflow: hidden;
-    margin: 1px 0;
-    background: center no-repeat #999;
-    width: 100%;
-    height: 261px;
-    padding: 10px;
-    position: relative;
-    background-size: cover;
-    cursor: pointer;
-}*/
-
-#hair {
-    background-image: url('img/home1.jpg');
-/*    overflow: hidden;
-    margin: 1px 0;
-    background: center no-repeat #999;
-    width: 100%;
-    height: 261px;
-    padding: 10px;
-    position: relative;
-    background-size: cover;
-    cursor: pointer;*/
+.outerContainer {
+    width:100%;
+    height: 300px;
+    margin-bottom: 6.5%;
 }
 
+.samplePics {
+    height: 100%;
+    width: 33%;  
+    display: inline-block; 
+}
 
+.samplePics > img {
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.samplePics > img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+ @media screen and (min-width: 100px) { 
+    /*.samplePics {
+        height: 80%;
+        width: 25%;  
+        display: inline-block; 
+    }
+*/
+    /*.samplePics > img {
+        width: 45%;
+        height: 60%;
+        object-fit: cover;
+    }
+ }*/
 
 
 
