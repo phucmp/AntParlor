@@ -42,7 +42,6 @@
     padding: 4px 55px 4px 15px;
     position: relative;
     background: #353737;
-    height: 250px;
     margin: auto;
     display: block;
     background-repeat: no-repeat;
@@ -51,11 +50,12 @@
     /*box-sizing: content-box;*/
     /*background-size: 765px;*/
     background-size: 1300px;
-    height: 300px;
+    height: 400px;
 }
 
 #caption {
-    padding: 20px;
+    font-size: 50px;
+    padding: 60px;
     text-shadow: 3px 3px 14px #424949;
 }
 
@@ -78,7 +78,7 @@
     color: #aaa;
     border-radius: 3px;
     font-size: 21px;
-    padding: 10px 10px 1px;
+    padding: -5px 10px 1px;
 }
 
 .search-form-and-button input { text-indent: 32px;}
@@ -124,8 +124,6 @@ input::placeholder {
 .search-button {
     border-radius: 0;
     height: 48px;
-    line-height: 48px;
-
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
@@ -136,7 +134,6 @@ input::placeholder {
     line-height: 35px;
     color: #fff;
     text-transform: uppercase;
-    border-radius: 0;
 }
 
 
