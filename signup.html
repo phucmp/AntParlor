@@ -18,7 +18,6 @@
 
 	<!-- External stylesheet and Vue.Js -->
 	<link rel="stylesheet" href="signup.css">
-	<!-- <script src="vue.js"></script> -->
 
 	<!-- Angular  -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
@@ -70,11 +69,14 @@
 	<div id="fake-nav">  
 	  <a href="#register" v-on="click: open('register', $event)">Register</a>
 	  <a href="#login" v-on="click: open('login', $event)">Login</a>
+	  <p>{{ message }}</p>
 	</div> 
 
 	<div class="user-modal-container" id="login-modal" v-on="click: close"></div>  
 
+</body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-</body>
+<script src="signup.js"></script>
+
 </html>
