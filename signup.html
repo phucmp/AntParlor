@@ -6,15 +6,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	
-	<!-- External stylesheet and Vue.Js -->
+	<!-- External stylesheet -->
 	<link rel="stylesheet" href="signup.css">
-<<<<<<< HEAD
 	
-	<!-- <script src="https://unpkg.com/vue"></script> -->
-=======
->>>>>>> d5768fb1b835d4f0cd5672964db6e7b6639daa51
-
 	<!-- Angular  -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
 
@@ -63,21 +57,18 @@
 
 	<!-- Buttons Section -->
 	<div id="fake-nav">  
-	  <a href="#register" v-on="click: open('register', $event)">Register</a>
-	  <a href="#login" v-on="click: open('login', $event)">Login</a>
-	  <p>{{ message }}</p>
+	  <a href="#register" v-on:click= "open('register', $event)">Register</a>
+	  <a href="#login" v-on:click= "open('login', $event)">Login</a>
 	</div> 
 
-	<div class="user-modal-container" id="login-modal" v-on="click: close"></div>  
+	<div class="user-modal-container" id="login-modal" v-on:click= "close"></div>  
 
 </body>
 
-<<<<<<< HEAD
-</body>
-<script src="vue.js"></script>
-=======
+<!-- JavaScript / Vue -->
+<!-- <script src="vue.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="signup.js"></script>
 
->>>>>>> d5768fb1b835d4f0cd5672964db6e7b6639daa51
 </html>
