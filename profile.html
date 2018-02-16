@@ -7,6 +7,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<!-- Icon for Website -->
+	<link rel="shortcut icon" href="apicon.ico" />
+
 	<!-- Stylesheet for fonts -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -20,10 +23,6 @@
 	<!-- External stylesheet and JavaScript -->
 	<link rel="stylesheet" href="profile.css">
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjKdJJ6WLeSrQqI0cHadAfuvL9rZ5Hr4&sensor=false" type="text/javascript"></script>
-	<!--<script async defer`
-	  		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJjKdJJ6WLeSrQqI0cHadAfuvL9rZ5Hr4">
-	</script>-->
-	<script src="profile.js"></script>
 
 </head>
 	<body>
@@ -36,7 +35,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">AntParlor</a>
+					<a class="navbar-brand" href="index.html">AntParlor</a>
 				</div> <!-- close navbar header div -->
 
 				<div class="collapse navbar-collapse" id="myNavbar">
@@ -49,48 +48,67 @@
 			</div> <!-- close container div -->
 		</nav>
 
-		<header class="portfolioPics">
+		<header id="portfolioPics">
 			<div class="container text-center">
 				<div class="col-sm-12">
 					<div class="outerContainer">
-						<div class="samplePics"><img  src="samp1.jpeg"></div>
-						<div class="samplePics"><img src="samp2.jpg"></div>
-						<div class="samplePics"><img src="samp3.png"></div>
+						<div class="samplePics"><img  src="{{ pic1 }}"></div>
+						<div class="samplePics"><img src="{{ pic2 }}"></div>
+						<div class="samplePics"><img src="{{ pic3 }}"></div>
 					<div>
 				</div>
 			</div>
 		</header>
 
-		<div class="providerInfo">
+		<div id="providerInfo">
 			<div class="outerContainer container text-center">
 				<div class="providerPic">
-					<img src="tempprofile.png">
+					<img src="{{ profilePic }}">
 				</div>
 				<div class="info">
 					<div class="Name">
-						EVELYN VALLEY
+						{{ name }}
 					</div>
 					<div class="Address">
-						1038 Arroyo Drive, Irvine, CA 92617
+						{{ address }}
 					</div>
 					<div class="Number">
-						949.120.3569
+						{{ number }}
 					</div>
 					<div class="Service">
-						Stylist
+						{{ service }}
 					</div>
 					<div class="Summary">
-						I have graduated from Nature Valley School of Styles. I have since been styling hair for the Almonds and Raisins Company, but now have ventured to start my own styling company.
+						{{ summary }}
 					</div>
 					<div class="socialLink">
-						<a href="https://www.google.com/"><img src="fb-logo.png"></a>
+						<a href="{{ fblink }}"><img src="fb-logo.png"></a>
 					</div>
 					<div class="socialLink">
-						<a href="https://www.google.com/"><img src="ig-logo.png"></a>
+						<a href="{{ iglink }}"><img src="ig-logo.png"></a>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!--
+		<div class="Review">
+			<div class="outerContainer container text-center">
+				<div id="rating">
+					<img src="{{ emoji }}">
+				</div>
+				<div class="emojiReview">
+					<div class="outerContainer">
+						<div class="samplePics"><img src="{{ e1 }}"></div>
+						<div class="samplePics"><img src="{{ e2 }}"></div>
+						<div class="samplePics"><img src="{{ e3 }}"></div>
+						<div class="samplePics"><img src="{{ e4 }}"></div>
+						<div class="samplePics"><img src="{{ e5 }}"></div>
+					<div>
+				</div>
+			</div>
+		</div>
+		-->
 
 		<div class="map">
 			<div class="outerContainer container text-center">
@@ -99,4 +117,6 @@
 		</div>
 
 	</body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+	<script src="profile.js"></script>
 </html>

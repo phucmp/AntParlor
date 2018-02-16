@@ -1,0 +1,95 @@
+/* Profile CSS File */
+
+/*NAV BAR*/
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 1% 0;
+    border:0;
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+/*AntParlor Logo*/
+.navbar .navbarcontainer .navbar-header .navbar-brand {
+    /*position: absolute;*/
+    font-family: "Vidaloka";
+    /*top: 22px;*/
+    /*left: 37px;*/
+    /*margin: -0;*/
+    width: 126px;
+    height: 33px;
+    font-size: 30px;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+}
+
+#portfolioPics {
+	margin-top: 1.5%;
+}
+
+.outerContainer {
+	width:100%;
+	height: 300px;
+	margin-bottom: 6.5%;
+}
+
+.samplePics {
+	height: 100%;
+	width: 33%;  
+    display: inline-block; 
+}
+
+.samplePics > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.samplePics > img:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.category {
+	font-family: benton;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 4px;
+}
+
+/*
+.Address {
+	font-family: benton;
+	font-size: 15px;
+}
+
+.Number {
+	font-family: benton;
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+
+.Service {
+	font-family: benton;
+	font-size: 15px;
+	font-style: italic;
+	letter-spacing: 1px;
+	margin-top: 10px;
+}
+
+.Summary {
+	font-family: benton;
+	font-size: 12px;
+	margin-top: 1%;
+}*/
