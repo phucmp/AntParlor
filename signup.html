@@ -55,18 +55,62 @@
 		</div>
 	</header>  -->
 
-	<!-- Buttons Section -->
+	<!-- Login/Signup Section -->
 	<div id="fake-nav">  
-	  <a href="#register" v-on:click= "open('register', $event)">Register</a>
-	  <a href="#login" v-on:click= "open('login', $event)">Login</a>
+	  <a href="#register" v-on:click="open('register', $event)">Register</a>
+	  <a href="#login" v-on:click="open('login', $event)">Login</a>
 	</div> 
 
-	<div class="user-modal-container" id="login-modal" v-on:click= "close"></div>  
+	<div class="user-modal-container" id="login-modal" v-on:click="close">
+		<div class="user-modal">
+			<!-- Form Switching -->
+			<ul class="form-switcher">  
+				<li v-on:click="flip('register', $event)"><a href="" id="register-form">Register</a></li>
+				<li v-on:click="flip('login', $event)"><a href="" id="login-form">Login</a></li>
+			</ul>  
+
+			<!-- Form Register Fields -->
+			<div class="form-register" id="form-register">
+			    <div class="error-message" v-text="registerError"></div>  
+				<input type="text" name="name" placeholder="Name" v-model="registerName" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="email" name="email" placeholder="Email" v-model="registerEmail" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="registerPassword" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('register', $event)" v-model="registerSubmit" id="registerSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('login', $event)">Already have an account?</a>
+				</div>  
+			</div>
+
+			<!-- Form Register Fields -->
+		    <div class="form-login" id="form-login">
+		    	<div class="error-message" v-text="loginError"></div>  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="submit" v-on="click: submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
+				</div>  
+		    </div>
+		    
+		    <!-- Form Password Fields -->
+		    <div class="form-password" id="form-password">
+		    	<div class="error-message" v-text="passwordError"></div>  
+				<input type="text" name="email" placeholder="Email" v-model="passwordEmail" v-on:keyup="submit('password', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('password', $event)" v-model="passwordSubmit" id="passwordSubmit">  
+		    </div> 
+
+		   	
+		</div>  
+	</div> 
+
+
+
+
+ 
 
 </body>
 
 <!-- JavaScript / Vue -->
-<!-- <script src="vue.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="signup.js"></script>
