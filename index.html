@@ -37,21 +37,60 @@
 				<a class="navbar-brand" href="#">AntParlor</a>
 			</div> <!-- close navbar header div -->
 
-			<div class="collapse navbar-collapse" id="myNavbar">
+			<div class="collapse navbar-collapse" id="fake-nav">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#signuppage" id="clickedMain">Sign Up</a></li>
-					<li><a href="#loginpage" id="clickedAbout">Log In</a></li>
+					<li><a href="#register" v-on:click="open('register', $event)">Register</a></li>
+					<li><a href="#login" v-on:click="open('login', $event)">Login</a></li>
 					<li><a href="#contactpage" id="clickedContact">Contact</a></li>
 				</ul>
-			</div> <!-- close navbar div -->
-		</div> <!-- close container div -->
+			</div>
+		</div> 
 	</nav> 
 
+	<!-- Sign up Section -->
+	<div class="user-modal-container" id="login-modal" v-on:click="close">
+		<div class="user-modal">
+			<!-- Form Switching -->
+			<ul class="form-switcher">  
+				<li v-on:click="flip('register', $event)"><a href="" id="register-form">Register</a></li>
+				<li v-on:click="flip('login', $event)"><a href="" id="login-form">Login</a></li>
+			</ul>  
+
+			<!-- Form Register Fields -->
+			<div class="form-register" id="form-register">
+			    <div class="error-message" v-text="registerError"></div>  
+				<input type="text" name="name" placeholder="Name" v-model="registerName" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="email" name="email" placeholder="Email" v-model="registerEmail" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="registerPassword" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('register', $event)" v-model="registerSubmit" id="registerSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('login', $event)">Already have an account?</a>
+				</div>  
+			</div>
+
+			<!-- Form Register Fields -->
+		    <div class="form-login" id="form-login">
+		    	<div class="error-message" v-text="loginError"></div>  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
+				</div>  
+		    </div>
+		    
+		    <!-- Form Password Fields -->
+		    <div class="form-password" id="form-password">
+		    	<div class="error-message" v-text="passwordError"></div>  
+				<input type="text" name="email" placeholder="Email" v-model="passwordEmail" v-on:keyup="submit('password', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('password', $event)" v-model="passwordSubmit" id="passwordSubmit">  
+		    </div>   	
+		</div>  
+	</div> 
+	
 	<!-- Searchbar Section -->
 	<header class="searchbar-section" id="searchbar">
 		<div class="container text-center">
-			<!-- <img src="img/main1.jpg" id="main1"> -->
-			<!-- <div class="search-bar-pic"><img src="img/main1.jpg"></div> -->
 			<div class="row">
 				<div class="col-sm-12">
 					<h1 id="caption">Discover & book beauty and barber appointments.</h1>
@@ -84,7 +123,6 @@
 						<div class="samplePics"><img src="img/home1.jpg"></div>
 						<div class="samplePics"><img src="img/home2.jpg"></div>
 						<div class="samplePics"><img src="img/home3.jpg"></div>
-						<!-- <div class="samplePics"><img src="img/home4.jpg"></div> -->
 					<div>
 				</div>
 			</div>
@@ -95,5 +133,12 @@
 
 
 
+
 </body>
+
+<!-- JavaScript / Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="signup.js"></script>
+
 </html>

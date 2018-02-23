@@ -73,6 +73,36 @@ var modal = new Vue({
 				this.active = which;
 			}
 		},
+
+		submit: function(which, e) {  
+			e.preventDefault();
+
+			$('#'+which+'Submit').addClass('disabled');
+			
+			var data = { 
+				form: which 
+			};
+
+			switch(which) {
+				case 'register':
+					data.name = this.registerName;
+					data.email = this.registerEmail;
+					data.password = this.registerPassword;
+					this.$set('registerSubmit', 'Registering...');
+					break;
+				case 'login':
+					data.user = this.loginUser;
+					data.password = this.loginPassword;
+					this.$set('loginSubmit', 'Logging In...');
+					break;
+				case 'password':
+					data.email = this.passwordEmail;
+					this.$set('passwordSubmit', 'Resetting Password...')
+					break;
+			}
+
+		  // TODO: submit our `data` variable
+		},
 	}
 });
 

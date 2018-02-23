@@ -15,9 +15,6 @@
 .navbar .navbarcontainer .navbar-header .navbar-brand {
     /*position: absolute;*/
     font-family: "Vidaloka";
-    /*top: 22px;*/
-    /*left: 37px;*/
-    /*margin: -0;*/
     width: 126px;
     height: 33px;
     font-size: 30px;
@@ -32,17 +29,7 @@
     color: #9d9d9d;
 }
 
-
-/*.signup-caption{
-	display: block;
-	position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}*/
-
-/*WHOLE CONTAINER SECTION*/
+/*WHOLE LOGIN/SIGNUP CONTAINER SECTION*/
 
 .user-modal-container * {
   box-sizing: border-box;
@@ -52,7 +39,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 50;
   left: 0;
   opacity: 0;
   visibility: hidden;
@@ -148,5 +135,11 @@
 
 .user-modal-container .links a {
   color: #3fb67b;
+}
+
+/* SUBMIT BUTTONS LOADING EFFECT */
+
+.user-modal-container input[type="submit"].disabled {
+  background-color: #98d6b7;
 }
 
