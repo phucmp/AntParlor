@@ -1,9 +1,10 @@
 // My Account JavaScript File
 
 var info = new Vue({
-  el: '#info',
+  el: '#profile',
   data: {
-    name: 'CHAD LEI',
+    name: 'Chad Lei',
+    email: 'chadlei@uci.edu',
     address: '1038 Arroyo Drive, Irvine, CA 92617',
     number: '949.120.3569',
     service: 'Barber',
@@ -22,3 +23,22 @@ var portfolio = new Vue({
     pic3: 'samp3.png'
   }
 })
+
+$(document).ready(function()
+  {
+    var navItems = $('.admin-menu li > a');
+    var navListItems = $('.admin-menu li');
+    var allWells = $('.admin-content');
+    var allWellsExceptFirst = $('.admin-content:not(:first)');
+    allWellsExceptFirst.hide();
+    navItems.click(function(e)
+    {
+        e.preventDefault();
+        navListItems.removeClass('active');
+        $(this).closest('li').addClass('active');
+        allWells.hide();
+        var target = $(this).attr('data-target-id');
+        $('#' + target).show();
+    });
+  }
+);

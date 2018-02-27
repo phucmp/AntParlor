@@ -61,35 +61,15 @@
 	cursor: pointer;
 }
 
-.category {
-	font-family: benton;
-	font-size: 20px;
-	font-weight: bold;
-	letter-spacing: 4px;
+.nav > .active {
+	background-color: red;
 }
 
-/*
-.Address {
-	font-family: benton;
-	font-size: 15px;
+.panel > .panel-heading {
+    background-color: #fafafa;
+    color: #333;
 }
 
-.Number {
-	font-family: benton;
-	font-size: 20px;
-	letter-spacing: 2px;
+.panel {
+	border-color: #fafafa;
 }
-
-.Service {
-	font-family: benton;
-	font-size: 15px;
-	font-style: italic;
-	letter-spacing: 1px;
-	margin-top: 10px;
-}
-
-.Summary {
-	font-family: benton;
-	font-size: 12px;
-	margin-top: 1%;
-}*/
