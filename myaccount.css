@@ -61,10 +61,6 @@
 	cursor: pointer;
 }
 
-.nav > .active {
-	background-color: red;
-}
-
 .panel > .panel-heading {
     background-color: #fafafa;
     color: #333;
@@ -72,4 +68,13 @@
 
 .panel {
 	border-color: #fafafa;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #39d2c9;
+}
+
+.nav-pills > li > a {
+    color: #333;
 }
