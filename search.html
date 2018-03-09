@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>AntParlor - Online Discovery of Stylists &amp; Beauty Professionals</title>
+	<link rel="shortcut icon" type="image/x-icon" href="ban.ico">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Stylesheet for fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Responsive website by Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- External stylesheet and JavaScript -->
+	<link rel="stylesheet" href="search.css">
+	<script src="myScript.js"></script>
+
+	<!-- Angular  -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+
+	<!-- Foundation -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+
+	<!-- Extra -->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3/dist/instantsearch.min.css"> -->
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  
+
+</head>
+
+<body>
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbarcontainer container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">AntParlor</a>
+			</div> <!-- close navbar header div -->
+
+			<div class="collapse navbar-collapse" id="fake-nav">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#register" v-on:click="open('register', $event)">Register</a></li>
+					<li><a href="#login" v-on:click="open('login', $event)">Login</a></li>
+					<li><a href="#contactpage" id="clickedContact">Contact</a></li>
+				</ul>
+			</div>
+		</div> 
+	</nav> 
+
+	<!-- Sign up Section -->
+	<div class="user-modal-container" id="login-modal" v-on:click="close">
+		<div class="user-modal">
+			<!-- Form Switching -->
+			<ul class="form-switcher">  
+				<li v-on:click="flip('register', $event)"><a href="" id="register-form">Register</a></li>
+				<li v-on:click="flip('login', $event)"><a href="" id="login-form">Login</a></li>
+			</ul>  
+
+			<!-- Form Register Fields -->
+			<div class="form-register" id="form-register">
+			    <div class="error-message" v-text="registerError"></div>  
+				<input type="text" name="name" placeholder="Name" v-model="registerName" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="email" name="email" placeholder="Email" v-model="registerEmail" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="registerPassword" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('register', $event)" v-model="registerSubmit" id="registerSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('login', $event)">Already have an account?</a>
+				</div>  
+			</div>
+
+			<!-- Form Register Fields -->
+		    <div class="form-login" id="form-login">
+		    	<div class="error-message" v-text="loginError"></div>  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
+				<div class="links">  
+					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
+				</div>  
+		    </div>
+		    
+		    <!-- Form Password Fields -->
+		    <div class="form-password" id="form-password">
+		    	<div class="error-message" v-text="passwordError"></div>  
+				<input type="text" name="email" placeholder="Email" v-model="passwordEmail" v-on:keyup="submit('password', $event) | key 'enter'">  
+				<input type="submit" v-on:click="submit('password', $event)" v-model="passwordSubmit" id="passwordSubmit">  
+		    </div>   	
+		</div>  
+	</div> 
+
+	<!-- Results Section -->
+<!-- 	<div class="container" id="search_results">
+		<h3 class="text-center">{{ search_term }}</h3>
+		<div class="columns medium-3" v-for="result in results">
+			<div class="card">
+				<div class="card-divider">
+					{{ result.name }}
+				</div>
+				<div class="card-section">
+					<p>{{ result.number }}</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- https://www.youtube.com/watch?v=G34_yNV8FMY -->
+	<div class="container" id="app">
+		<div class="well">
+			<form class="form-inline">
+				<h1><label>Enter Provider Name</label></h1>
+				<input type="text" name="name" class="form-control" v-model="search">
+			</form>
+		</div>
+
+		<div class="well">
+			<ul>
+				<li v-for="provider in filteredData" >
+					<h1>{{ provider.name }}</h1>
+					<p>HEYHEYHEYHEYHEYHEYHEYHEYHEYHEY</p>
+				</li>
+			</ul>
+		</div>
+
+		<!-- <div id="app">
+			<input v-model="search">
+			<div v-for="item in items | startsWith search 'name'">
+				{{ item.name }}
+			</div>
+		</div> -->
+	</div>
+	
+
+
+
+
+
+
+
+
+</body>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="search.js"></script>
+
+<!-- JavaScript / Vue -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!-- <script src="search.js"></script> -->
+
+<!-- Facebook  -->
+<!-- <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '527924507594555',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.12'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script> -->
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>The greatest news app ever</title>
+	
+	<!-- Foundation for Styling -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+
+	<!-- Stylesheet for fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Responsive website by Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- External stylesheet -->
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbarcontainer container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">AntParlor</a>
+			</div> <!-- close navbar header div -->
+
+			<div class="collapse navbar-collapse" id="fake-nav">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#register" v-on:click="open('register', $event)">Register</a></li>
+					<li><a href="#login" v-on:click="open('login', $event)">Login</a></li>
+					<li><a href="#contactpage" id="clickedContact">Contact</a></li>
+				</ul>
+			</div>
+		</div> 
+	</nav> 
+
+	<div class="container" id="app">
+		<h3 class="text-center">VueNews</h3> 
+
+		<news-list :results="results"></news-list>
+		
+		<div class="row" v-for="posts in processedPosts">
+		<div class="columns large-3 medium-6" v-for="post in posts">
+			<div class="card">
+				<div class="card-divider">
+					{{ post.title }}
+				</div>
+				<a :href="post.url" target="_blank"><img :src="post.image_url"></a>
+				
+				<div class="card-section">
+					<p>{{ post.abstract }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<!-- <div class="row" v-for="posts in processedPosts">
+		<div class="columns large-3 medium-6" v-for="post in posts">
+			<div class="card">
+				<div class="card-divider">
+					{{ post.title }}
+				</div>
+				<a :href="post.url" target="_blank"><img :src="post.image_url"></a>
+				
+				<div class="card-section">
+					<p>{{ post.abstract }}</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="login.js"></script>
+
+</body>
+</html>

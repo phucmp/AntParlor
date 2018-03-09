@@ -14,13 +14,13 @@
 	<link rel="stylesheet" href="signup.css">
 
 	<!-- Angular  -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
 </head>
 
 <body>
 	<!-- Navigation Bar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbarcontainer container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -39,7 +39,7 @@
 				</ul>
 			</div>
 		</div>
-	</nav>  
+	</nav> -->  
 
 	<!-- Sign up Section -->
 	<!-- <header class="signup-caption-section" id="searchbar">
@@ -105,7 +105,57 @@
 		</div>  
 	</div> 
 
+	
+	<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
+	<!-- For Facebook login -->
+	<!-- https://www.youtube.com/watch?v=x_gLILTRD_k -->
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '527924507594555',
+	      cookie     : true,
+	      xfbml      : true,
+	      version    : 'v2.12'
+	    });
+
+	    FB.getLoginStatus(function(response) {
+		    if (response.status === 'connected'){
+		    	document.getElementById('status').innerHTML = "We are connected"
+		    } else if (response.status === 'not_authorized') {
+		    	document.getElementById('status').innerHTML = "We are not logged in"
+		    } else {
+		    	document.getElementById('status').innerHTML = "We are not logged into Facebook"
+		    }
+		});
+	      
+	    //FB.AppEvents.logPageView();   
+	      
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "https://connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+
+	  function login() {
+	  	FB.login(function(response)) {
+	  		if (response.status === 'connected'){
+		    	document.getElementById('status').innerHTML = "We are connected"
+		    } else if (response.status === 'not_authorized') {
+		    	document.getElementById('status').innerHTML = "We are not logged in"
+		    } else {
+		    	document.getElementById('status').innerHTML = "We are not logged into Facebook"
+		    }
+	  	}};
+	  }
+	</script>
+
+	<div id="status"></div>
+	<button onclick="login()">Login</button>
 
 
  
@@ -116,5 +166,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="signup.js"></script>
+
 
 </html>
