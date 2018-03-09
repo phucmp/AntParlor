@@ -1,0 +1,62 @@
+/* Contact CSS File */
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  position: relative;
+}
+
+/*NAV BAR*/
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    margin-bottom: 0;
+    border-radius: 0;
+    padding: 1% 0;
+    border:0;
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+/*AntParlor Logo*/
+.navbar .navbarcontainer .navbar-header .navbar-brand {
+    /*position: absolute;*/
+    font-family: "Vidaloka";
+    /*top: 22px;*/
+    /*left: 37px;*/
+    /*margin: -0;*/
+    width: 126px;
+    height: 33px;
+    font-size: 30px;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+}
+
+.text-center {
+	font-family: "Vidaloka";
+	letter-spacing: 2px;
+}
+
+.well {
+	background-color: #fafafa;
+	-webkit-transform: translateY(30%);
+	transform: translateY(30%);
+}
+
+.btn {
+	background-color: #39d2c9;
+	border: none;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+}
