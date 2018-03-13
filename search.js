@@ -13,15 +13,22 @@
 // });
 
 var names = [
-    { name: 'johnny'},
-    { name: 'jack'},
-    { name: 'selina'}
+    {name: 'johnny'},
+    {name: 'jack'},
+    {name: 'selina'}
 ];
 
 var services = [
-    { service: 'barber'},
-    { name: 'makeup'},
-    { name: 'nails'}
+    {service: 'barber'},
+    {service: 'makeup'},
+    {service: 'nails'}
+];
+
+var locations = [
+	{location: 'irvine'},
+	{location: 'uci'},
+	{location: 'costa mesa'}
+
 ];
 
 const vm2 = new Vue({
@@ -29,17 +36,19 @@ const vm2 = new Vue({
   data: {
   	search: '',
   	Providers:[
-		{ name: "Bob", skill: "barber"},
-		{ name: "Linda", skill: "makeup" },
-		{ name: "Tina", skill: "nail" },
-		{ name: "Gene", skill: "eyebrow" },
-		{ name: "Louise", skill: "other" }
+		{name: "Bob", skill: "barber"},
+		{name: "Linda", skill: "makeup" },
+		{name: "Tina", skill: "nail" },
+		{name: "Gene", skill: "eyebrow" },
+		{name: "Louise", skill: "other" }
   	]
   },
   computed: {
   	filteredData: function(){
-  		// if search is in names, return name
-  		// if search is in services, return skills
+  		// if search is in names, return 
+  		// if search is in locations, return 
+  		// if search is in services, return 
+  		// if search is in prices, return
   		return this.Providers.filter((provider) => {
   			return provider.name.toLowerCase().match(this.search.toLowerCase());
   		});
