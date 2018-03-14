@@ -12,6 +12,8 @@
 //   }
 // });
 
+// create list for barber (and all different types of services)
+
 var names = [
     {name: 'johnny'},
     {name: 'jack'},

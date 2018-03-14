@@ -102,9 +102,11 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="search-form-and-button page-link">
-						<span class="fa fa-search"></span> 
-						<input type="text" placeholder="Haircut, salon name, stylist name" class="search-form">
-						<button title="Search" onclick="window.location.href='search.html?name='" ng-click="search(searchComponentIdentifier, $event)" class="search-button">Search</button>
+						<form action="search.html" method="GET">
+							<span class="fa fa-search"></span> 
+							<input type="text" name="searchTerm" placeholder="Haircut, salon name, stylist name" class="search-form" method="GET"/>
+							<button title="Search" ng-click="search(searchComponentIdentifier, $event)" class="search-button">Search</button>
+						</form>
 					</div>
 				</div>
 			</div>
