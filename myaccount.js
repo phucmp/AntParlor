@@ -1,4 +1,5 @@
 // My Account JavaScript File
+var accountName, accountEmail;
 
 // AWS ~~~~~~~~~
 // Configure AWS SDK for JavaScript for LAMBDA
@@ -14,7 +15,7 @@ var pullParams = {
   FunctionName : 'accountInfo',
   InvocationType : 'RequestResponse',
   LogType : 'None',
-  Payload: '{"name" : "Danko"}'
+  Payload: '{"name" : "Vegeta", "action" : "query"}'
 };
 
 var pullResults;
@@ -33,12 +34,22 @@ lambda.invoke(pullParams, function(error, data) {
         address: pullResults.address,
         number: pullResults.phonenumber,
         service: pullResults.serviceType,
-        summary: 'I am a fourth year student who studies computer science but have a passion for cutting hair',
-        fblink: 'https://www.facebook.com/',
-        iglink: 'https://www.instagram.com/',
-        profilePic: 'tempprofile.png'
       }
     })
+
+    accountName = info._data.name;
+    accountEmail = info._data.email;
+
+    //check to string to int
+    if (pullResults.dynamicAvailable == '1') {
+      $('#settingAvailable').text('Yes');
+      $('#settingAvailable').removeClass('label-danger');
+      $('#settingAvailable').addClass('label-success');
+    } else if (pullResults.dynamicAvailable == '0') {
+      $('#settingAvailable').text('No');
+      $('#settingAvailable').removeClass('label-success');
+      $('#settingAvailable').addClass('label-danger');
+    }
   }
 });
 
@@ -88,6 +99,22 @@ $(document).ready(function()
       navListItems.removeClass('active');
       $('#liSettings').addClass('active');
       $('#settings').show();
+
+      pullParams = {
+        FunctionName : 'accountInfo',
+        InvocationType : 'RequestResponse',
+        LogType : 'None',
+        Payload: JSON.stringify({"email" : accountEmail, "action" : "update", "avail" : "1"})
+      }
+
+      lambda.invoke(pullParams, function(error, data) {
+        if (error) {
+          prompt(error);
+        } else {
+          pullResults = JSON.parse(data.Payload);
+          console.log(pullResults);
+        }
+      });
     }); 
 
     $('#notAvailable').click(function(e)
@@ -100,6 +127,22 @@ $(document).ready(function()
       navListItems.removeClass('active');
       $('#liSettings').addClass('active');
       $('#settings').show();
+
+      pullParams = {
+        FunctionName : 'accountInfo',
+        InvocationType : 'RequestResponse',
+        LogType : 'None',
+        Payload: JSON.stringify({"email" : accountEmail, "action" : "update", "avail" : "0"})
+      }
+
+      lambda.invoke(pullParams, function(error, data) {
+        if (error) {
+          prompt(error);
+        } else {
+          pullResults = JSON.parse(data.Payload);
+          console.log(pullResults);
+        }
+      });
     });  
   }
 );
