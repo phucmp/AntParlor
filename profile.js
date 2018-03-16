@@ -1,5 +1,68 @@
 // Profile Javascript File
 
+
+// Helper functions~~~~~~~~~~
+function formatUsPhone(phone) {
+    var phoneTest = new RegExp(/^((\+1)|1)? ?\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})( ?(ext\.? ?|x)(\d*))?$/);
+    phone = phone.trim();
+    var results = phoneTest.exec(phone);
+    if (results !== null && results.length > 8) {
+        return "(" + results[3] + ") " + results[4] + "-" + results[5] + (typeof results[8] !== "undefined" ? " x" + results[8] : "");
+    } else {
+         return phone;
+    }
+}
+
+
+// AWS ~~~~~~~~~
+// Configure AWS SDK for JavaScript for LAMBDA
+AWS.config.region = 'us-west-2'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
+});
+
+// Prepare to call Lambda function
+var lambda = new AWS.Lambda({region: 'us-west-1', apiVersion: '2015-03-31'});
+
+var pullParams = {
+  FunctionName : 'accountInfo',
+  InvocationType : 'RequestResponse',
+  LogType : 'None',
+  Payload: '{"name" : "Vegeta", "action" : "query"}'
+};
+
+var pullResults;
+
+lambda.invoke(pullParams, function(error, data) {
+  if (error) {
+    prompt(error);
+  } else {
+    pullResults = JSON.parse(data.Payload).Items[0];
+    console.log(pullResults);
+    var profileInfo = new Vue({
+      el: '#providerInfo',
+      data: {
+        name: pullResults.name,
+        address: pullResults.address,
+        number: formatUsPhone(pullResults.phonenumber),
+        service: pullResults.serviceType,
+        profilePic: 'tempprofile.png'
+      }
+    })
+
+    if (pullResults.dynamicAvailable == '1') {
+      $('#settingAvailable').text('Yes');
+      $('#settingAvailable').removeClass('label-danger');
+      $('#settingAvailable').addClass('label-success');
+    } else if (pullResults.dynamicAvailable == '0') {
+      $('#settingAvailable').text('No');
+      $('#settingAvailable').removeClass('label-success');
+      $('#settingAvailable').addClass('label-danger');
+    }
+  }
+});
+
+// Geolocation for Map~~~~~~~~~~
 var geocoder = new google.maps.Geocoder();
 var address = "1038 Arroyo Drive, Irvine, CA 92617";
 var latitude;
@@ -26,23 +89,8 @@ function initMap() {
   });
 }
 
-var pname ='CHAD LEI';
-// Vue.js Code
 
-var profileInfo = new Vue({
-  el: '#providerInfo',
-  data: {
-    name: pname,
-    address: '1038 Arroyo Drive, Irvine, CA 92617',
-    number: '949.120.3569',
-    service: 'Barber',
-    summary: 'I am a fourth year student who studies computer science but have a passion for cutting hair',
-    fblink: 'https://www.facebook.com/',
-    iglink: 'https://www.instagram.com/',
-    profilePic: 'tempprofile.png'
-  }
-})
-
+// Vue.js Code~~~~~~~~~~~
 var portfolio = new Vue({
   el: '#portfolioPics',
   data: {
@@ -51,6 +99,8 @@ var portfolio = new Vue({
     pic3: 'samp3.png'
   }
 })
+
+
 
 /* 
 // REVIEW SYSTEM

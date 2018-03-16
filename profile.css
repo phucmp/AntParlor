@@ -143,6 +143,15 @@
   margin: 0 auto;
 }
 
+.panel > .panel-heading {
+    background-color: #39d2c9;
+    color: #fff;
+}
+
+.panel {
+	border-color: #fafafa;
+}
+
 /*
 //REVIEW
 #rating {

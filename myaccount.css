@@ -78,3 +78,22 @@
 .nav-pills > li > a {
     color: #333;
 }
+
+.search-button {
+    border-radius: 5px;
+    height: 48px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    background-color: #39d2c9;
+    border: none;
+    width: 96px;
+    line-height: 35px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.search-button:hover {
+    opacity: .65;
+}

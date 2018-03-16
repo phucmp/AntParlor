@@ -180,9 +180,7 @@
 	            </div>
 
 	            <div class="col-md-9  admin-content" id="change-password">
-	                <form action="/password" method="post">
-
-	           
+	                <form action="javascript:updatePW();" method="post">
 	                    <div class="panel panel-info" style="margin: 1em;">
 	                        <div class="panel-heading">
 	                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">New Password</label></h3>
@@ -190,7 +188,7 @@
 	                        <div class="panel-body">
 	                            <div class="form-group">
 	                                <div class="col-sm-10">
-	                                    <input type="password" class="form-control" name="password" id="new_password" >
+	                                    <input type="password" class="form-control" name="password" id="new_password" required>
 	                                </div>
 	                            </div>
 
@@ -205,7 +203,7 @@
 	                        <div class="panel-body">
 	                            <div class="form-group">
 	                                <div class="col-sm-10">
-	                                    <input type="password" class="form-control" name="password_confirmation" id="confirm_password" >
+	                                    <input type="password" class="form-control" name="password_confirmation" id="confirm_password" required>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -216,19 +214,16 @@
 	                        <div class="panel-body">
 	                            <div class="form-group">
 	                                <div class="pull-left">
-	                                    <input type="submit" class="form-control btn btn-primary" name="submit" id="submit">
+	                                    <button title="Search" class="search-button">Submit</button>
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
-
 	                </form>
 	            </div>
 
 	            <div class="col-md-9  admin-content" id="edit-info">
-	                <form action="/password" method="post">
-
-	           
+	                <form action="javascript:updateInfo();" method="post">	           
 	                    <div class="panel panel-info" style="margin: 1em;">
 	                        <div class="panel-heading">
 	                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">Name</label></h3>
@@ -299,60 +294,15 @@
 	                        </div>
 	                    </div>
 
-	                    <!-- Remove this since don't have info in database 
-	                    <div class="panel panel-info" style="margin: 1em;">
-	                        <div class="panel-heading">
-	                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">Summary</label></h3>
-	                        </div>
-	                        <div class="panel-body">
-	                            <div class="form-group">
-	                                <div class="col-sm-10">
-	                                    <input type="text" class="form-control" name="summary" id="new_summary" >
-	                                </div>
-	                            </div>
-
-	                        </div>
-	                    </div>
-
-	                    <div class="panel panel-info" style="margin: 1em;">
-	                        <div class="panel-heading">
-	                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">Facebook Link</label></h3>
-	                        </div>
-	                        <div class="panel-body">
-	                            <div class="form-group">
-	                                <div class="col-sm-10">
-	                                    <input type="text" class="form-control" name="fblink" id="new_fblink" >
-	                                </div>
-	                            </div>
-
-	                        </div>
-	                    </div>
-
-	                    <div class="panel panel-info" style="margin: 1em;">
-	                        <div class="panel-heading">
-	                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">Instagram Link</label></h3>
-	                        </div>
-	                        <div class="panel-body">
-	                            <div class="form-group">
-	                                <div class="col-sm-10">
-	                                    <input type="text" class="form-control" name="iglink" id="new_iglink" >
-	                                </div>
-	                            </div>
-
-	                        </div>
-	                    </div>
-						-->
-
 	                    <div class="panel panel-info border" style="margin: 1em;">
 	                        <div class="panel-body">
 	                            <div class="form-group">
 	                                <div class="pull-left">
-	                                    <input type="submit" class="form-control btn btn-primary" name="submit" id="submit">
+	                                    <button title="Search" class="search-button">Submit</button>
 	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
-
 	                </form>
 	            </div>
 
