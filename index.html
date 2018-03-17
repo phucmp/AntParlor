@@ -18,6 +18,7 @@
 
 	<!-- External stylesheet and JavaScript -->
 	<link rel="stylesheet" href="index.css">
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.208.0.min.js"></script>
 
 	<!-- Angular  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -110,6 +111,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+					
+					<button class="priceRecButton" onclick="testPriceFunc('$')">$</button>
+					<button class="priceRecButton" onclick="testPriceFunc('$$')">$$</button>
+					<button class="priceRecButton" onclick="testPriceFunc('$$$')">$$$</button>
+					<button class="priceRecButton" onclick="switchType('amateur')">Amateur</button>
+					<button class="priceRecButton" onclick="switchType('professional')">Professional</button>	
+			</div>
 		</div>
 	</header> 
 
@@ -124,6 +133,9 @@
 			<div class="row"> 
 				<div class="col-sm-12">
 					<div class="outerContainer">
+						<div class="col-sm-12">
+							<h1></h1>
+						</div>
 						<div class="samplePics"><img src="img/home1.jpg"></div>
 						<div class="samplePics"><img src="img/home2.jpg"></div>
 						<div class="samplePics"><img src="img/home3.jpg"></div>

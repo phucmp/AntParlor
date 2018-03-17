@@ -68,6 +68,19 @@
     height: 297px;
 }
 
+.priceRecButton{
+    background-color: transparent;
+    border: none;
+    color: white;
+    display: inline-block;    
+    font-family: 'Montserrat', sans-serif;    
+    text-align: right;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    outline: none;
+}
+
 .search-form-and-button {
     position: relative;
     right: 2px;
@@ -295,23 +308,4 @@ input::placeholder {
         object-fit: cover;
     }
  }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
