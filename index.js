@@ -170,20 +170,22 @@ lambda1.invoke(pullParams1, function(error, data) {
     //console.log(pullResults);
     for (var obj in pullResults.Items) {
         // Still need to rank by location
-
-        if (pullResults.Items[obj].serviceType == 'Barber' && amaRec.Barber == '') {
-            amaRec.Barber = pullResults.Items[obj].name;
+        // Adding in the dynamic available check for 1
+        if (pullResults.Items[obj].dynamicAvailable) {
+          if (pullResults.Items[obj].serviceType == 'Barber' && amaRec.Barber == '') {
+              amaRec.Barber = pullResults.Items[obj].name;
+          }
+          if (pullResults.Items[obj].serviceType == 'Threading' && amaRec.Threading == '') {
+              amaRec.Threading = pullResults.Items[obj].name;
+          }
+          if (pullResults.Items[obj].serviceType == 'Nails' && amaRec.Nails == '') {
+              amaRec.Nails = pullResults.Items[obj].name;
+          }
+          if (pullResults.Items[obj].serviceType == 'Makeup' && amaRec.Makeup == '') {
+              amaRec.Makeup = pullResults.Items[obj].name;
+          }
+          //console.log(pullResults.Items[obj].serviceType);
         }
-        if (pullResults.Items[obj].serviceType == 'Threading' && amaRec.Threading == '') {
-            amaRec.Threading = pullResults.Items[obj].name;
-        }
-        if (pullResults.Items[obj].serviceType == 'Nails' && amaRec.Nails == '') {
-            amaRec.Nails = pullResults.Items[obj].name;
-        }
-        if (pullResults.Items[obj].serviceType == 'Makeup' && amaRec.Makeup == '') {
-            amaRec.Makeup = pullResults.Items[obj].name;
-        }
-        //console.log(pullResults.Items[obj].serviceType);
     }
     console.log(amaRec);
   }
