@@ -122,7 +122,16 @@
 			<ul>
 				<li v-for="provider in filteredData" >
 					<h1>{{ provider.name }}</h1>
-					<p>HEYHEYHEYHEYHEYHEYHEYHEYHEYHEY</p>
+					<!-- address, dynamicAvailable, email, phonenumber, serviceType -->
+					<h3><b>Address:</b> {{ provider.address }}</h3>
+					<h3><b>City:</b> {{ provider.city }}</h3>
+					<h3><b>Service:</b> {{ provider.serviceType }}</h3>
+					<h3><b>Available:</b> {{ provider.dynamicAvailable }}</h3>
+					<h3><b>Contact:</b></h3>
+						<ul>
+							<li><h5><b>Phone:</b> {{ provider.phonenumber }}</h5></li>
+							<li><h5><b>Email:</b> {{ provider.email }}</h5></li>
+						</ul>
 				</li>
 			</ul>
 		</div>
