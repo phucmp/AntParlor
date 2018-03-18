@@ -62,9 +62,9 @@
 			<!-- Form Register Fields -->
 			<div class="form-register" id="form-register">
 			    <div class="error-message" v-text="registerError"></div>  
-				<input type="text" name="name" placeholder="Name" v-model="registerName" v-on:keyup="submit('register', $event) | key 'enter'">  
-				<input type="email" name="email" placeholder="Email" v-model="registerEmail" v-on:keyup="submit('register', $event) | key 'enter'">  
-				<input type="password" name="password" placeholder="Password" v-model="registerPassword" v-on:keyup="submit('register', $event) | key 'enter'">  
+				<input type="text" name="name" placeholder="Name" v-model="registerName" v-on:keyup.enter="submit('register', $event) | key 'enter'">  
+				<input type="email" name="email" placeholder="Email" v-model="registerEmail" v-on:keyup.enter="submit('register', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="registerPassword" v-on:keyup.enter="submit('register', $event) | key 'enter'">  
 				<input type="submit" v-on:click="submit('register', $event)" v-model="registerSubmit" id="registerSubmit">  
 				<div class="links">  
 					<a href="" v-on:click="flip('login', $event)">Already have an account?</a>
@@ -74,8 +74,8 @@
 			<!-- Form Register Fields -->
 		    <div class="form-login" id="form-login">
 		    	<div class="error-message" v-text="loginError"></div>  
-				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup="submit('login', $event) | key 'enter'">  
-				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup="submit('login', $event) | key 'enter'">  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
 				<input type="submit" v-on:click="submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
 				<div class="links">  
 					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
@@ -85,7 +85,7 @@
 		    <!-- Form Password Fields -->
 		    <div class="form-password" id="form-password">
 		    	<div class="error-message" v-text="passwordError"></div>  
-				<input type="text" name="email" placeholder="Email" v-model="passwordEmail" v-on:keyup="submit('password', $event) | key 'enter'">  
+				<input type="text" name="email" placeholder="Email" v-model="passwordEmail" v-on:keyup.enter="submit('password', $event) | key 'enter'">  
 				<input type="submit" v-on:click="submit('password', $event)" v-model="passwordSubmit" id="passwordSubmit">  
 		    </div>   	
 		</div>  
