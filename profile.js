@@ -15,18 +15,9 @@ function formatUsPhone(phone) {
 
 // Geolocation for Map~~~~~~~~~~
 var geocoder = new google.maps.Geocoder();
-var address = "1038 Arroyo Drive, Irvine, CA 92617";
+var address;
 var latitude;
 var longitude;
-
-geocoder.geocode( { 'address': address}, function(results, status) {
-
-if (status == google.maps.GeocoderStatus.OK) {
-    latitude = results[0].geometry.location.lat();
-    longitude = results[0].geometry.location.lng();
-    initMap();
-  }
-});
 
 function initMap() {
   var location = {lat: latitude, lng: longitude};
@@ -91,6 +82,16 @@ $(document).ready(function()
             profilePic: 'tempprofile.png'
           }
         })
+        address = pullResults.address;
+        geocoder.geocode( { 'address': address}, function(results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat();
+            longitude = results[0].geometry.location.lng();
+            initMap();
+          }
+        });
+
 
         if (pullResults.dynamicAvailable == '1') {
           $('#settingAvailable').text('Yes');
