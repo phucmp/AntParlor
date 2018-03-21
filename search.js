@@ -1,4 +1,9 @@
+AWS.config.region = 'us-west-1'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
+});
 
+var docClient = new AWS.DynamoDB.DocumentClient();
 
 // What The User Searched
 var searchWord = window.location.search.substr(1).split("=")[1];
@@ -60,6 +65,20 @@ if (barber.includes(searchWord.toLowerCase())) {
 	  LogType : 'None',
 	  Payload: '{"serviceType" : "Barber"}'
 	};
+	var params = {
+		TableName : "lastSearches",
+		Item : {
+			"ID" : 1,
+			"Service" : "Barber"
+		}
+	};
+	docClient.put(params, function(err, data) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data, null, 2));
+		}
+	});
 } else if (nails.includes(searchWord.toLowerCase())) {
 	pullParams = {
 	  FunctionName : 'searchResults',
@@ -67,6 +86,20 @@ if (barber.includes(searchWord.toLowerCase())) {
 	  LogType : 'None',
 	  Payload: '{"serviceType" : "Nails"}'
 	};
+	var params = {
+		TableName : "lastSearches",
+		Item : {
+			"ID" : 1,
+			"Service" : "Nails"
+		}
+	};
+	docClient.put(params, function(err, data) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data, null, 2));
+		}
+	});
 } else if (threading.includes(searchWord.toLowerCase())) {
 	pullParams = {
 	  FunctionName : 'searchResults',
@@ -74,6 +107,20 @@ if (barber.includes(searchWord.toLowerCase())) {
 	  LogType : 'None',
 	  Payload: '{"serviceType" : "Threading"}'
 	};
+	var params = {
+		TableName : "lastSearches",
+		Item : {
+			"ID" : 1,
+			"Service" : "Threading"
+		}
+	};
+	docClient.put(params, function(err, data) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data, null, 2));
+		}
+	});
 } else if (makeup.includes(searchWord.toLowerCase())) {
 	pullParams = {
 	  FunctionName : 'searchResults',
@@ -81,6 +128,21 @@ if (barber.includes(searchWord.toLowerCase())) {
 	  LogType : 'None',
 	  Payload: '{"serviceType" : "Makeup"}'
 	};
+	var params = {
+		TableName : "lastSearches",
+		Item : {
+			"ID" : 1,
+			"Service" : "Makeup"
+		}
+	};
+	docClient.put(params, function(err, data) {
+		if (err) {
+			console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+		} else {
+			console.log("Added item:", JSON.stringify(data, null, 2));
+		}
+	});
+
 } else if (salon.includes(searchWord.toLowerCase())) {
 	pullParams = {
 	  FunctionName : 'searchResults',
