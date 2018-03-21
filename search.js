@@ -202,7 +202,6 @@ lambda.invoke(pullParams, function(error, data) {
 	  methods: {
 	  	select: function(event) {
 	        targetId = event.currentTarget.id;
-	        console.log(this._uid);
 	        console.log(event.currentTarget); // returns 'foo'
     	}
 	  // 	parseSearchTerm: function () {
