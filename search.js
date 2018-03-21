@@ -1,20 +1,9 @@
 
-// const vm = new Vue({
-//   el: '#search_results',
-//   data: {
-//   	search_term: 'Results: "Haircut"',
-//     results: [
-//       {name: "john adams", price: "$15", number: "4158881111", reviews: "5"},
-//       {name: "chad lei", price: "$11", number: "4158881111", reviews: "5"},
-//       {name: "paul pham", price: "$14", number: "4158881111", reiews: "5"},
-//       {name: "jack jack", price: "$12", number: "4158881111", reviews: "5"}
-//     ]
-//   }
-// });
 
+// What The User Searched
 var searchWord = window.location.search.substr(1).split("=")[1];
 
-// create list for barber (and all different types of services) salon nails threading makeup 
+// List of All Keywords For Possible Queries
 var barber = [
 	'barber','barbers','barbershop','barbers near me','hair','haircut','hair cut','cut','cuts','fade', 'fades', 'designs','fix up'
 ];
@@ -208,6 +197,13 @@ lambda.invoke(pullParams, function(error, data) {
 	});
     }
 });
+
+function testJS() {
+    var b = document.getElementById('name').a.href,
+        url = 'profile.html?name=' + encodeURIComponent(b);
+
+    document.location.href = url;
+}
 
 
 

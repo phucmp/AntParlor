@@ -118,10 +118,17 @@
 			</form>
 		</div>
 
+
 		<div class="well">
 			<ul>
 				<li v-for="provider in filteredData" >
-					<h1>{{ provider.name }}</h1>
+					<!-- ****************** -->
+					<!-- HERE PAUL -->
+					<!-- ****************** -->
+					<form action="profile.html" method="GET" id="name">
+						<!-- <input type ="text" id="name" name="n"> -->
+						<a href="profile.html" onClick="testJS()">{{ provider.name }}</a>
+					</form>
 					<!-- address, dynamicAvailable, email, phonenumber, serviceType -->
 					<h3><b>Address:</b> {{ provider.address }}</h3>
 					<h3><b>City:</b> {{ provider.city }}</h3>
