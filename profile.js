@@ -13,55 +13,6 @@ function formatUsPhone(phone) {
     }
 }
 
-
-// AWS ~~~~~~~~~
-// Configure AWS SDK for JavaScript for LAMBDA
-AWS.config.region = 'us-west-2'; // Region
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
-});
-
-// Prepare to call Lambda function
-var lambda = new AWS.Lambda({region: 'us-west-1', apiVersion: '2015-03-31'});
-
-var pullParams = {
-  FunctionName : 'accountInfo',
-  InvocationType : 'RequestResponse',
-  LogType : 'None',
-  Payload: '{"name" : "Vegeta", "action" : "query"}'
-};
-
-var pullResults;
-
-lambda.invoke(pullParams, function(error, data) {
-  if (error) {
-    prompt(error);
-  } else {
-    pullResults = JSON.parse(data.Payload).Items[0];
-    console.log(pullResults);
-    var profileInfo = new Vue({
-      el: '#providerInfo',
-      data: {
-        name: pullResults.name,
-        address: pullResults.address,
-        number: formatUsPhone(pullResults.phonenumber),
-        service: pullResults.serviceType,
-        profilePic: 'tempprofile.png'
-      }
-    })
-
-    if (pullResults.dynamicAvailable == '1') {
-      $('#settingAvailable').text('Yes');
-      $('#settingAvailable').removeClass('label-danger');
-      $('#settingAvailable').addClass('label-success');
-    } else if (pullResults.dynamicAvailable == '0') {
-      $('#settingAvailable').text('No');
-      $('#settingAvailable').removeClass('label-success');
-      $('#settingAvailable').addClass('label-danger');
-    }
-  }
-});
-
 // Geolocation for Map~~~~~~~~~~
 var geocoder = new google.maps.Geocoder();
 var address = "1038 Arroyo Drive, Irvine, CA 92617";
@@ -101,7 +52,59 @@ var portfolio = new Vue({
 })
 
 
+$(document).ready(function()
+  {
+    reqEmail = window.location.href.split("?")[1].split("=")[1];
+    
+    // AWS ~~~~~~~~~
+    // Configure AWS SDK for JavaScript for LAMBDA
+    AWS.config.region = 'us-west-2'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
+    });
 
+    // Prepare to call Lambda function
+    var lambda = new AWS.Lambda({region: 'us-west-1', apiVersion: '2015-03-31'});
+
+    var pullParams = {
+      FunctionName : 'accountInfo',
+      InvocationType : 'RequestResponse',
+      LogType : 'None',
+      Payload: '{"email" : "' + reqEmail + '", "action" : "query"}'
+    };
+
+    var pullResults;
+
+    lambda.invoke(pullParams, function(error, data) {
+      if (error) {
+        prompt(error);
+      } else {
+        pullResults = JSON.parse(data.Payload).Items[0];
+        console.log(pullResults);
+        var profileInfo = new Vue({
+          el: '#providerInfo',
+          data: {
+            name: pullResults.name,
+            address: pullResults.address,
+            number: formatUsPhone(pullResults.phonenumber),
+            service: pullResults.serviceType,
+            profilePic: 'tempprofile.png'
+          }
+        })
+
+        if (pullResults.dynamicAvailable == '1') {
+          $('#settingAvailable').text('Yes');
+          $('#settingAvailable').removeClass('label-danger');
+          $('#settingAvailable').addClass('label-success');
+        } else if (pullResults.dynamicAvailable == '0') {
+          $('#settingAvailable').text('No');
+          $('#settingAvailable').removeClass('label-success');
+          $('#settingAvailable').addClass('label-danger');
+        }
+      }
+    });
+  }
+);
 /* 
 // REVIEW SYSTEM
 
