@@ -122,7 +122,7 @@
 		<div class="well">
 			<ul>
 				<li v-for="provider in filteredData" v-on:click="select($event)" v-bind:id="provider.ID">
-					<a href="profile.html?email={{ provider.email }}">{{ provider.name }}</a>
+					<a href="profile.html?name={{ provider.name }}">{{ provider.name }}</a>
 					<h3><b>Address:</b> {{ provider.address }}</h3>
 					<h3><b>City:</b> {{ provider.city }}</h3>
 					<h3><b>Service:</b> {{ provider.serviceType }}</h3>
