@@ -168,6 +168,7 @@ function pullPopular(popularService){
                     count += 1;
                 }
             }
+            console.log(popular);
             var closestAvail = new Vue({
               el: '#popRec',
               data: {
@@ -175,7 +176,12 @@ function pullPopular(popularService){
                 two: popular[1].name,
                 three: popular[2].name,
                 four: popular[3].name,
-                five: popular[4].name
+                five: popular[4].name,
+                oneE: popular[0].email,
+                twoE: popular[1].email,
+                threeE: popular[2].email,
+                fourE: popular[3].email,
+                fiveE: popular[4].email
               }
             })
         }
@@ -243,9 +249,13 @@ function testPriceFunc(price,t){
 
 var amaRec = {
     "Barber" : '',
+    "BarberEmail": '',
     "Threading" : '',
+    "ThreadingEmail": '',
     "Makeup" : '',
-    "Nails" : ''
+    "MakeupEmail": '',
+    "Nails" : '',
+    "NailsEmail": ''
 }
 
 var pullParams1 = {
@@ -299,19 +309,22 @@ lambda1.invoke(pullParams1, function(error, data) {
             console.log(latitude);
           } 
         }); */
-
         if (pullResults.Items[obj].dynamicAvailable) {
           if (pullResults.Items[obj].serviceType == 'Barber' && amaRec.Barber == '') {
               amaRec.Barber = pullResults.Items[obj].name;
+              amaRec.BarberEmail = pullResults.Items[obj].email;
           }
           if (pullResults.Items[obj].serviceType == 'Threading' && amaRec.Threading == '') {
               amaRec.Threading = pullResults.Items[obj].name;
+              amaRec.ThreadingEmail = pullResults.Items[obj].email;
           }
           if (pullResults.Items[obj].serviceType == 'Nails' && amaRec.Nails == '') {
               amaRec.Nails = pullResults.Items[obj].name;
+              amaRec.NailsEmail = pullResults.Items[obj].email;
           }
           if (pullResults.Items[obj].serviceType == 'Makeup' && amaRec.Makeup == '') {
               amaRec.Makeup = pullResults.Items[obj].name;
+              amaRec.MakeupEmail = pullResults.Items[obj].email;
           }
         }
     }
@@ -321,7 +334,11 @@ lambda1.invoke(pullParams1, function(error, data) {
         Barber: amaRec.Barber,
         Threading: amaRec.Threading,
         Nails: amaRec.Nails,
-        Makeup: amaRec.Makeup
+        Makeup: amaRec.Makeup,
+        BarberEmail: amaRec.BarberEmail,
+        ThreadingEmail: amaRec.ThreadingEmail,
+        NailsEmail: amaRec.NailsEmail,
+        MakeupEmail: amaRec.MakeupEmail
       }
     })
   }
