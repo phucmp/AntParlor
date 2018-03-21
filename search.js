@@ -261,6 +261,7 @@ lambda.invoke(pullParams, function(error, data) {
 });
 
 function testJS() {
+	//this part right here needs to have get correct provider name
 	console.log(document.getElementById('name').value);
     var b = document.getElementById('name').value,
         url = 'profile.html?name=' + encodeURIComponent(b);
