@@ -86,7 +86,89 @@ function switchType(professional){
 
     }
 }
+function testFunction(){
+    var pullParams ={
+        FunctionName: 'topSearch',
+        InvocationType: 'RequestResponse',
+        LogType : 'None',
+    }
 
+    var bCount = 0;
+    var nCount = 0;
+    var mCount = 0;
+    var tCount = 0;
+    
+    lambda.invoke(pullParams, function(error,data){
+        if (error){
+            prompt(error);
+        }
+        else{
+            pullResults = JSON.parse(data.Payload).Items;
+            for (var key in pullResults){
+                if (pullResults[key].Service == "Barber"){
+                    bCount += 1;
+                }
+                else if (pullResults[key].Service == "Threading"){
+                    tCount += 1;
+                }
+                else if(pullResults[key].Service == "Makeup"){
+                    mCount += 1;
+                }
+                else if(pullResults[key].Service == "Nails"){
+                    nCount += 1;
+                }                
+            }
+
+
+            var max = Math.max(bCount,tCount,mCount, nCount)
+            var popularService;
+           
+            if (bCount == max){
+                popularService = "Barber";
+            }
+            else if (tCount == max){
+                popularService = "Threading";
+            } 
+            else if (mCount == max){
+                popularService = "Makeup";
+            }
+            else if (nCount == max){
+                popularService = "Nails";
+            }
+
+            pullPopular(popularService);
+
+        }
+    })
+}
+function pullPopular(popularService){
+    var pullParams = {
+        FunctionName: "priceRecStudents",
+        InvocationType : "RequestResponse",
+        LogType: "None",
+        Payload: '{ "city" : "Irvine"}'
+    };
+    console.log(popularService);
+    lambda.invoke(pullParams,function(error,data){
+        if(error){
+            promt(error);
+        }
+        else{
+            pullResults = JSON.parse(data.Payload).Items;
+            var count = 0;
+            for (var key in pullResults){
+                if (count == 6){
+                    break;
+                }
+                if (pullResults[key].serviceType == popularService){
+                    console.log(pullResults[key]);
+                    count += 1;
+                }
+            }
+
+        }
+    })
+}
 function testPriceFunc(price,t){
     var professional = document.cookie;
     console.log(professional);
