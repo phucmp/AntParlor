@@ -47,7 +47,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#register" v-on:click="open('register', $event)">Register</a></li>
 					<li><a href="#login" v-on:click="open('login', $event)">Login</a></li>
-					<li><a href='contact.html' id="clickedContact">Contact</a></li>
+					<li><a href="#contactpage" id="clickedContact">Contact</a></li>
 				</ul>
 			</div>
 		</div> 
@@ -122,7 +122,18 @@
 		<div class="well">
 			<ul>
 				<li v-for="provider in filteredData" v-on:click="select($event)" v-bind:id="provider.ID">
+<<<<<<< HEAD
+					<!-- ****************** -->
+					<!-- HERE PAUL -->
+					<!-- ****************** -->
+					<!-- <input type ="text" id="name" name="n"> -->
+					<!-- <h1>{{ provider.ID }}</h1> -->
+					<!-- <a onClick="testJS()" id="name">{{ provider.name }}</a> -->
 					<a href="profile.html?name={{ provider.name }}">{{ provider.name }}</a>
+					<!-- address, dynamicAvailable, email, phonenumber, serviceType -->
+=======
+					<a href="profile.html?email={{ provider.email }}">{{ provider.name }}</a>
+>>>>>>> ce1e0413952c75dc740b59975ab76cb2e75e572e
 					<h3><b>Address:</b> {{ provider.address }}</h3>
 					<h3><b>City:</b> {{ provider.city }}</h3>
 					<h3><b>Service:</b> {{ provider.serviceType }}</h3>

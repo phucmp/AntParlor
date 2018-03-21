@@ -1,58 +1,6 @@
 // My Account JavaScript File
 var accountName, accountEmail;
-
-// AWS ~~~~~~~~~
-// Configure AWS SDK for JavaScript for LAMBDA
-AWS.config.region = 'us-west-2'; // Region
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
-});
-
-// Prepare to call Lambda function
-var lambda = new AWS.Lambda({region: 'us-west-1', apiVersion: '2015-03-31'});
-
-var pullParams = {
-  FunctionName : 'accountInfo',
-  InvocationType : 'RequestResponse',
-  LogType : 'None',
-  Payload: '{"name" : "Vegeta", "action" : "query"}'
-};
-
-var pullResults;
-
-lambda.invoke(pullParams, function(error, data) {
-  if (error) {
-    prompt(error);
-  } else {
-    pullResults = JSON.parse(data.Payload).Items[0];
-    console.log(pullResults);
-    var info = new Vue({
-      el: '#profile',
-      data: {
-        name: pullResults.name,
-        email: pullResults.email,
-        address: pullResults.address,
-        number: pullResults.phonenumber,
-        service: pullResults.serviceType,
-      }
-    })
-
-    accountName = info._data.name;
-    accountEmail = info._data.email;
-
-    if (pullResults.dynamicAvailable == '1') {
-      $('#settingAvailable').text('Yes');
-      $('#settingAvailable').removeClass('label-danger');
-      $('#settingAvailable').addClass('label-success');
-    } else if (pullResults.dynamicAvailable == '0') {
-      $('#settingAvailable').text('No');
-      $('#settingAvailable').removeClass('label-success');
-      $('#settingAvailable').addClass('label-danger');
-    }
-  }
-});
-
-
+var reqEmail;
 
 
 // VUE~~~~~~~~~~~
@@ -168,6 +116,58 @@ function updateInfo() {
 // Execute once page loads ~~~~~~~~~
 $(document).ready(function()
   {
+    reqEmail = window.location.href.split("?")[1].split("=")[1];
+    // AWS ~~~~~~~~~
+    // Configure AWS SDK for JavaScript for LAMBDA
+    AWS.config.region = 'us-west-2'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-west-2:01df0e0c-6be5-46cd-b277-f60d4e3021a0',
+    });
+
+    // Prepare to call Lambda function
+    var lambda = new AWS.Lambda({region: 'us-west-1', apiVersion: '2015-03-31'});
+
+    var pullParams = {
+      FunctionName : 'accountInfo',
+      InvocationType : 'RequestResponse',
+      LogType : 'None',
+      Payload: '{"email" : "' + reqEmail + '", "action" : "query"}'
+    };
+
+    var pullResults;
+
+    lambda.invoke(pullParams, function(error, data) {
+      if (error) {
+        prompt(error);
+      } else {
+        pullResults = JSON.parse(data.Payload).Items[0];
+        console.log(pullResults);
+        var info = new Vue({
+          el: '#profile',
+          data: {
+            name: pullResults.name,
+            email: pullResults.email,
+            address: pullResults.address,
+            number: pullResults.phonenumber,
+            service: pullResults.serviceType,
+          }
+        })
+
+        accountName = info._data.name;
+        accountEmail = info._data.email;
+
+        if (pullResults.dynamicAvailable == '1') {
+          $('#settingAvailable').text('Yes');
+          $('#settingAvailable').removeClass('label-danger');
+          $('#settingAvailable').addClass('label-success');
+        } else if (pullResults.dynamicAvailable == '0') {
+          $('#settingAvailable').text('No');
+          $('#settingAvailable').removeClass('label-success');
+          $('#settingAvailable').addClass('label-danger');
+        }
+      }
+    });
+
     var navItems = $('.admin-menu li > a');
     var navListItems = $('.admin-menu li');
     var allWells = $('.admin-content');
