@@ -198,7 +198,13 @@ lambda.invoke(pullParams, function(error, data) {
 	  // 	]
 	  	Providers: pullResults,
 	  },
-	  // methods: {
+
+	  methods: {
+	  	select: function(event) {
+	        targetId = event.currentTarget.id;
+	        console.log(this._uid);
+	        console.log(event.currentTarget); // returns 'foo'
+    	}
 	  // 	parseSearchTerm: function () {
 	  // 		if (this.search_term.includes("+")){
 	  // 			var newTerm = '';
@@ -213,7 +219,7 @@ lambda.invoke(pullParams, function(error, data) {
 	  // 			return this.search_term;
 	  // 		}
 	  // 	}
-	  // },
+	  },
 	  computed: {
 	  	filteredData: function(){
 	  		if (barber.includes(this.search_term.toLowerCase())){
@@ -262,11 +268,12 @@ lambda.invoke(pullParams, function(error, data) {
 
 function testJS() {
 	//this part right here needs to have get correct provider name
-	console.log(document.getElementById('name').value);
-    var b = document.getElementById('name').value,
-        url = 'profile.html?name=' + encodeURIComponent(b);
+	// console.log(document.getElementById('name').id);
+    
+    // var b = document.getElementById('name').value,
+    //     url = 'profile.html?name=' + encodeURIComponent(b);
 
-    document.location.href = url;
+    // document.location.href = url;
 }
 
 

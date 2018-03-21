@@ -121,11 +121,12 @@
 
 		<div class="well">
 			<ul>
-				<li v-for="provider in filteredData" >
+				<li v-for="provider in filteredData" v-on:click="select($event)" v-bind:id="provider.ID">
 					<!-- ****************** -->
 					<!-- HERE PAUL -->
 					<!-- ****************** -->
 					<!-- <input type ="text" id="name" name="n"> -->
+					<!-- <h1>{{ provider.ID }}</h1> -->
 					<a onClick="testJS()" id="name">{{ provider.name }}</a>
 					<!-- address, dynamicAvailable, email, phonenumber, serviceType -->
 					<h3><b>Address:</b> {{ provider.address }}</h3>
