@@ -75,9 +75,9 @@
 			<!-- Form Register Fields -->
 		    <div class="form-login" id="form-login">
 		    	<div class="error-message" v-text="loginError"></div>  
-				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
-				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
-				<input type="submit" v-on:click="submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup.enter="submit('login', $event) | key 'enter'" id='loginEmail'required>  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup.enter="submit('login', $event) | key 'enter'" id='loginPw' required>  
+				<input type="submit" v-model="loginSubmit"  id="loginSubmit">  
 				<div class="links">  
 					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
 				</div>  

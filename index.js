@@ -327,6 +327,43 @@ lambda1.invoke(pullParams1, function(error, data) {
   }
 });
 
+$('#loginSubmit').click(function(e)
+  {
+    e.preventDefault();
+    console.log($('#loginEmail')[0].value);
+    console.log($('#loginPw')[0].value);
+
+    if ($('#loginEmail')[0].value == '') {
+      alert("Please Enter an Email");
+    } else if ($('#loginPw')[0].value == '') {
+      alert("Please Enter a Password");
+    } else {
+    
+      pullParams = {
+        FunctionName : 'emailMatch',
+        InvocationType : 'RequestResponse',
+        LogType : 'None',
+        Payload: JSON.stringify({"email" : $('#loginEmail')[0].value, "password" : $('#loginPw')[0].value})
+      }
+
+      lambda.invoke(pullParams, function(error, data) {
+        if (error) {
+          prompt(error);
+        } else {
+          pullResults = JSON.parse(data.Payload);
+          console.log(pullResults);
+          if (pullResults == "success") {
+            var url = 'myaccount.html?email=' + $('#loginEmail')[0].value;
+            document.location.href = url;
+          } else {
+            alert("The Email Or Password That You Have Entered Is Incorrect. Please Try Again.");
+          }
+        }
+      });
+      
+    }
+  });  
+
 
 $( document ).ready(function() {
   testFunction();
