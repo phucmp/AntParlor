@@ -127,7 +127,8 @@
 					<!-- ****************** -->
 					<!-- <input type ="text" id="name" name="n"> -->
 					<!-- <h1>{{ provider.ID }}</h1> -->
-					<a onClick="testJS()" id="name">{{ provider.name }}</a>
+					<!-- <a onClick="testJS()" id="name">{{ provider.name }}</a> -->
+					<a href="profile.html?name={{ provider.name }}">{{ provider.name }}</a>
 					<!-- address, dynamicAvailable, email, phonenumber, serviceType -->
 					<h3><b>Address:</b> {{ provider.address }}</h3>
 					<h3><b>City:</b> {{ provider.city }}</h3>
