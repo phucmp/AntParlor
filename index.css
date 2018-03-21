@@ -159,12 +159,11 @@ input::placeholder {
 .outerContainer {
     width:100%;
     height: 300px;
-    margin-bottom: 6.5%;
 }
 
 .samplePics {
-    height: 100%;
-    width: 33%;  
+    height: 70%;
+    width: 18%;  
     display: inline-block; 
 }
 
@@ -308,4 +307,10 @@ input::placeholder {
         object-fit: cover;
     }
  }*/
+}
+
+.recLabel {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.1em;
+  font-weight: bold;
 }
