@@ -266,10 +266,18 @@ lambda1.invoke(pullParams1, function(error, data) {
           if (pullResults.Items[obj].serviceType == 'Makeup' && amaRec.Makeup == '') {
               amaRec.Makeup = pullResults.Items[obj].name;
           }
-          //console.log(pullResults.Items[obj].serviceType);
         }
     }
     console.log(amaRec);
+    var closestAvail = new Vue({
+      el: '#closestAvail',
+      data: {
+        Barber: amaRec.Barber,
+        Threading: amaRec.Threading,
+        Nails: amaRec.Nails,
+        Makeup: amaRec.Makeup
+      }
+    })
   }
 });
 
