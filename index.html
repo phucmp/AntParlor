@@ -45,7 +45,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#register" v-on:click="open('register', $event)">Register</a></li>
 					<li><a href="#login" v-on:click="open('login', $event)">Login</a></li>
-					<li><a href="#contactpage" id="clickedContact">Contact</a></li>
+					<li><a href="contact.html" id="clickedContact">Contact</a></li>
 				</ul>
 			</div>
 		</div> 
@@ -75,9 +75,9 @@
 			<!-- Form Register Fields -->
 		    <div class="form-login" id="form-login">
 		    	<div class="error-message" v-text="loginError"></div>  
-				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
-				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup.enter="submit('login', $event) | key 'enter'">  
-				<input type="submit" v-on:click="submit('login', $event)" v-model="loginSubmit"  id="loginSubmit">  
+				<input type="text" name="user" placeholder="Email or Username" v-model="loginUser" v-on:keyup.enter="submit('login', $event) | key 'enter'" id='loginEmail'required>  
+				<input type="password" name="password" placeholder="Password" v-model="loginPassword" v-on:keyup.enter="submit('login', $event) | key 'enter'" id='loginPw' required>  
+				<input type="submit" v-model="loginSubmit"  id="loginSubmit">  
 				<div class="links">  
 					<a href="" v-on:click="flip('password', $event)">Forgot your password?</a>
 				</div>  
@@ -127,69 +127,63 @@
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-sm-12">
-					<h1>Browse Recommendations</h1>
+					<h1>Popular Recommendations</h1>
 				</div>
-				<div class="row">
-						<h1>Popular service now</h1>
-						<body onload="testFunction()">
-						
-						</body>
-					</div>
 			</div>
 			<div class="row"> 
 				<div class="col-sm-12">
-					<div class="outerContainer">
+					<div class="outerContainer" id="popRec">
 						<div class="samplePics">
 							<img src="img/hairSamp.jpg">
-							<p class="recLabel">{{ Barber }}</p>
+							<p class="recLabel">{{ one }}</p>
 						</div>
 						<div class="samplePics">
-							<img src="img/nailSamp.jpg">
-							<p class="recLabel">{{ Nails }}</p>
+							<img src="img/hairSamp.jpg">
+							<p class="recLabel">{{ two }}</p>
 						</div>
 						<div class="samplePics">
-							<img src="img/threadingSamp.jpg">
-							<p class="recLabel">{ Threading }}</p>
+							<img src="img/hairSamp.jpg">
+							<p class="recLabel">{{ three }}</p>
 						</div>
 						<div class="samplePics">
-							<img src="img/makeupSamp.png">
-							<p class="recLabel">{{ Makeup }}</p>
+							<img src="img/hairSamp.jpg">
+							<p class="recLabel">{{ four }}</p>
 						</div>
 						<div class="samplePics">
-							<img src="img/makeupSamp.png">
-							<p class="recLabel">{{ Makeup }}</p>
+							<img src="img/hairSamp.jpg">
+							<p class="recLabel">{{ five }}</p>
 						</div>
 					<div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-				<div class="col-sm-12">
-					<h1>Recommendations Based on Closest Available</h1>
-				</div>
+			<div class="col-sm-12">
+				<h1>Top Category Recommendations</h1>
 			</div>
-			<div class="row"> 
-				<div class="col-sm-12">
-					<div class="outerContainer" id="closestAvail">
-						<div class="samplePics">
-							<img src="img/hairSamp.jpg">
-							<p class="recLabel">{{ Barber }}</p>
-						</div>
-						<div class="samplePics">
-							<img src="img/nailSamp.jpg">
-							<p class="recLabel">{{ Nails }}</p>
-						</div>
-						<div class="samplePics">
-							<img src="img/threadingSamp.jpg">
-							<p class="recLabel">{{ Threading }}</p>
-						</div>
-						<div class="samplePics">
-							<img src="img/makeupSamp.png">
-							<p class="recLabel">{{ Makeup }}</p>
-						</div>
-					<div>
-				</div>
+		</div>
+		<div class="row"> 
+			<div class="col-sm-12">
+				<div class="outerContainer" id="closestAvail">
+					<div class="samplePics">
+						<img src="img/hairSamp.jpg">
+						<p class="recLabel">{{ Barber }}</p>
+					</div>
+					<div class="samplePics">
+						<img src="img/nailSamp.jpg">
+						<p class="recLabel">{{ Nails }}</p>
+					</div>
+					<div class="samplePics">
+						<img src="img/threadingSamp.jpg">
+						<p class="recLabel">{{ Threading }}</p>
+					</div>
+					<div class="samplePics">
+						<img src="img/makeupSamp.png">
+						<p class="recLabel">{{ Makeup }}</p>
+					</div>
+				<div>
 			</div>
+		</div>
 	</header>
 
 

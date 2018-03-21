@@ -46,35 +46,37 @@ function showError(error) {
 
 function geocodeLatLng() {
 	var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({'location': latlng}, function(results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-               console.log(results[0].formatted_address);
-               currentCity = results[0].address_components[2].long_name
-        } else {
-          window.alert('No results found');
-        }
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') {
+      if (results[0]) {
+             console.log(results[0].formatted_address);
+             currentCity = results[0].address_components[2].long_name
       } else {
-        window.alert('Geocoder failed due to: ' + status);
+        //window.alert('No results found');
       }
-    });
+    } else {
+      //window.alert('Geocoder failed due to: ' + status);
+    }
+  });
 }
 
-var rad = function(x) {
-  return x * Math.PI / 180;
-};
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 
-var getDistance = function(p1, p2) {
-  var R = 6378137; // Earth’s mean radius in meter
-  var dLat = rad(p2.lat() - p1.lat());
-  var dLong = rad(p2.lng() - p1.lng());
-  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
-    Math.sin(dLong / 2) * Math.sin(dLong / 2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var d = R * c;
-  return d; // returns the distance in meter
-};
+function getDistance(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
 
 function switchType(professional){
     if (professional == "professional"){
@@ -148,6 +150,7 @@ function pullPopular(popularService){
         LogType: "None",
         Payload: '{ "city" : "Irvine"}'
     };
+    var popular = [];
     console.log(popularService);
     lambda.invoke(pullParams,function(error,data){
         if(error){
@@ -161,14 +164,24 @@ function pullPopular(popularService){
                     break;
                 }
                 if (pullResults[key].serviceType == popularService){
-                    console.log(pullResults[key]);
+                    popular.push(pullResults[key]);
                     count += 1;
                 }
             }
-
+            var closestAvail = new Vue({
+              el: '#popRec',
+              data: {
+                one: popular[0].name,
+                two: popular[1].name,
+                three: popular[2].name,
+                four: popular[3].name,
+                five: popular[4].name
+              }
+            })
         }
     })
 }
+
 function testPriceFunc(price,t){
     var professional = document.cookie;
     console.log(professional);
@@ -249,10 +262,44 @@ lambda1.invoke(pullParams1, function(error, data) {
     prompt(error);
   } else {
     pullResults = JSON.parse(data.Payload);
+    console.log(pullResults);
     //console.log(pullResults);
+
+    var geocoder = new google.maps.Geocoder();
+    var address = "1040 Arroyo Dr, Irvine, CA 92617, USA";
+    /*
+    (function loop(i) {
+    // got this from http://stackoverflow.com/a/28831613/4355695
+      address = pullResults.Items[i].address;
+      console.log(address);
+      geocoder.geocode({ 'address': address }, function (results, status) {
+      // got this from http://www.aspsnippets.com/Articles/Google-Maps-API-V3-Get-Latitude-and-Longitude-of-a-location-from-Address-using-JavaScript.aspx
+        if (status == google.maps.GeocoderStatus.OK) {
+          var latitude = results[0].geometry.location.lat();
+          var longitude = results[0].geometry.location.lng();
+          console.log(latitude + "," + longitude);
+        }
+      });
+      i++;
+      if (i < pullResults.Count)
+      {
+          setTimeout(function() { loop(i); }, 500);
+      }
+    })(0);*/
+
     for (var obj in pullResults.Items) {
         // Still need to rank by location
         // Adding in the dynamic available check for 1
+        /*console.log(pullResults.Items[obj].address);
+        geocoder.geocode( { 'address': pullResults.Items[obj].address}, function(results, status) {
+        
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            console.log(latitude);
+          } 
+        }); */
+
         if (pullResults.Items[obj].dynamicAvailable) {
           if (pullResults.Items[obj].serviceType == 'Barber' && amaRec.Barber == '') {
               amaRec.Barber = pullResults.Items[obj].name;
@@ -268,7 +315,6 @@ lambda1.invoke(pullParams1, function(error, data) {
           }
         }
     }
-    console.log(amaRec);
     var closestAvail = new Vue({
       el: '#closestAvail',
       data: {
@@ -281,12 +327,50 @@ lambda1.invoke(pullParams1, function(error, data) {
   }
 });
 
+$('#loginSubmit').click(function(e)
+  {
+    e.preventDefault();
+    console.log($('#loginEmail')[0].value);
+    console.log($('#loginPw')[0].value);
+
+    if ($('#loginEmail')[0].value == '') {
+      alert("Please Enter an Email");
+    } else if ($('#loginPw')[0].value == '') {
+      alert("Please Enter a Password");
+    } else {
+    
+      pullParams = {
+        FunctionName : 'emailMatch',
+        InvocationType : 'RequestResponse',
+        LogType : 'None',
+        Payload: JSON.stringify({"email" : $('#loginEmail')[0].value, "password" : $('#loginPw')[0].value})
+      }
+
+      lambda.invoke(pullParams, function(error, data) {
+        if (error) {
+          prompt(error);
+        } else {
+          pullResults = JSON.parse(data.Payload);
+          console.log(pullResults);
+          if (pullResults == "success") {
+            var url = 'myaccount.html?email=' + $('#loginEmail')[0].value;
+            document.location.href = url;
+          } else {
+            alert("The Email Or Password That You Have Entered Is Incorrect. Please Try Again.");
+          }
+        }
+      });
+      
+    }
+  });  
+
 
 $( document ).ready(function() {
+  testFunction();
 	getLocation();
 	setTimeout(function(){ 
-		console.log("here");
 		geocodeLatLng(); 
 	}, 10000);
+  //console.log(getDistance(33.6464991, -117.8262621, 33.5, -117.5));
 });
 
