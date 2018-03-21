@@ -199,7 +199,8 @@ lambda.invoke(pullParams, function(error, data) {
 });
 
 function testJS() {
-    var b = document.getElementById('name').a.href,
+	console.log(document.getElementById('name').value);
+    var b = document.getElementById('name').value,
         url = 'profile.html?name=' + encodeURIComponent(b);
 
     document.location.href = url;
