@@ -24,7 +24,6 @@ function showPosition(position) {
 	lat = position.coords.latitude;
     lng = position.coords.longitude;
     latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
-    console.log(latlng);
 }
 
 function showError(error) {
@@ -49,7 +48,7 @@ function geocodeLatLng() {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[0]) {
-             console.log(results[0].formatted_address);
+             //console.log(results[0].formatted_address);
              currentCity = results[0].address_components[2].long_name
       } else {
         //window.alert('No results found');
@@ -81,6 +80,68 @@ function getDistance(lat1,lon1,lat2,lon2) {
 function switchType(professional){
     if (professional == "professional"){
         document.cookie = "professional";
+        /*
+        var profRec = {
+            "Barber" : '',
+            "BarberEmail": '',
+            "Threading" : '',
+            "ThreadingEmail": '',
+            "Makeup" : '',
+            "MakeupEmail": '',
+            "Nails" : '',
+            "NailsEmail": ''
+        }
+
+        var pullParams1 = {
+          FunctionName : 'displayRec',
+          InvocationType : 'RequestResponse',
+          LogType : 'None',
+          Payload: '{"city" : "Irvine", "type" : "prof"}'
+        };
+
+        var pullResults;
+
+        lambda1.invoke(pullParams1, function(error, data) {
+          if (error) {
+            prompt(error);
+          } else {
+            pullResults = JSON.parse(data.Payload);
+            console.log(pullResults.Items)
+            for (var obj in pullResults.Items) {
+              if (profRec.Barber == '') {
+                  profRec.Barber = pullResults.Items[obj].name;
+                  profRec.BarberEmail = pullResults.Items[obj].email;
+              }
+              else if (profRec.Threading == '') {
+                  profRec.Threading = pullResults.Items[obj].name;
+                  profRec.ThreadingEmail = pullResults.Items[obj].email;
+              }
+              else if (profRec.Nails == '') {
+                  profRec.Nails = pullResults.Items[obj].name;
+                  profRec.NailsEmail = pullResults.Items[obj].email;
+              }
+              else if (profRec.Makeup == '') {
+                  profRec.Makeup = pullResults.Items[obj].name;
+                  profRec.MakeupEmail = pullResults.Items[obj].email;
+              }
+            }
+
+            var closestAvail = new Vue({
+              el: '#closestAvail',
+              data: {
+                Barber: profRec.Barber,
+                Threading: profRec.Threading,
+                Nails: profRec.Nails,
+                Makeup: profRec.Makeup,
+                BarberEmail: profRec.BarberEmail,
+                ThreadingEmail: profRec.ThreadingEmail,
+                NailsEmail: profRec.NailsEmail,
+                MakeupEmail: profRec.MakeupEmail
+              }
+            })
+            console.log(closestAvail);
+          }
+        });*/
         
     }
     else if(professional == "amateur"){
@@ -88,6 +149,7 @@ function switchType(professional){
 
     }
 }
+
 function testFunction(){
     var pullParams ={
         FunctionName: 'topSearch',
@@ -262,7 +324,7 @@ var pullParams1 = {
   FunctionName : 'displayRec',
   InvocationType : 'RequestResponse',
   LogType : 'None',
-  Payload: '{"city" : "Irvine"}'
+  Payload: '{"city" : "Irvine",  "type" : "ama"}'
 };
 
 var pullResults;
@@ -272,7 +334,6 @@ lambda1.invoke(pullParams1, function(error, data) {
     prompt(error);
   } else {
     pullResults = JSON.parse(data.Payload);
-    console.log(pullResults);
     //console.log(pullResults);
 
     var geocoder = new google.maps.Geocoder();

@@ -199,7 +199,7 @@ $(document).ready(function()
         FunctionName : 'accountInfo',
         InvocationType : 'RequestResponse',
         LogType : 'None',
-        Payload: JSON.stringify({"email" : accountEmail, "action" : "dynamic", "avail" : "1"})
+        Payload: JSON.stringify({"email" : accountEmail, "action" : "dynamic", "avail" : 1})
       }
 
       lambda.invoke(pullParams, function(error, data) {
@@ -227,7 +227,7 @@ $(document).ready(function()
         FunctionName : 'accountInfo',
         InvocationType : 'RequestResponse',
         LogType : 'None',
-        Payload: JSON.stringify({"email" : accountEmail, "action" : "dynamic", "avail" : "0"})
+        Payload: JSON.stringify({"email" : accountEmail, "action" : "dynamic", "avail" : 0})
       }
 
       lambda.invoke(pullParams, function(error, data) {
