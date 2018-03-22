@@ -23,3 +23,6 @@ Within this directory, there are 7 Pages:
 Sign Up and Login Pages have been reduced down to be couple lines of HTML code within the Index Page. That means that you don't need
 to go to new page to render the code. 
 
+NOTE:
+Used AMAZON WEB SERVICES (AWS). We have Lambda code that helped us connect front end to backend. If needed, please let us know if you wish to see it. 
+
